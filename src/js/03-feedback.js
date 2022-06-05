@@ -4,13 +4,10 @@ import debounce from 'lodash.throttle';
 
 const form = document.querySelector(".feedback-form");
 
-// form.addEventListener("input", updateStorage);
-// form.addEventListener("input", debounce(updateStorage, 100, { 'trailing': false }));
-form.addEventListener("input", (event) => { debounce(currentuserData, 500, { 'trailing': true })});
+form.addEventListener("input", updateStorage);
 
-// const saveData = debounce(updateStorage, 500);
 function updateStorage(evt) {
-    localStorage.setItem("feedback-form-state", JSON.stringify(currentuserData(evt)));
+    throttle(localStorage.setItem("feedback-form-state", JSON.stringify(currentuserData(evt))),500);
 };
 
 function loadValuesFromStorage() {
